@@ -1,0 +1,15 @@
+check_id,check_name,table_name,severity,status,bad_row_count,run_at,detail
+DQ-C01,Payroll equals ledger,fact_payroll + fact_ledger,Critical,FAIL,5.0,2026-10-19 12:35:25.321977+05:30,Monthly employer cost vs ledger accounts 5001–5005; tolerance INR 0.01
+DQ-C02,Ledger balanced,fact_ledger,Critical,PASS,0.0,2026-10-19 12:35:25.321977+05:30,Debit and credit totals per journal entry differ by no more than INR 0.005
+DQ-C03,Unique payroll rows,fact_payroll,Critical,FAIL,4.0,2026-10-19 12:35:25.321977+05:30,Rows belonging to duplicate employee_id/run_id groups
+DQ-C04,No orphan employees,employee-bearing fact tables,Critical,FAIL,2.0,2026-10-19 12:35:25.321977+05:30,"Across payroll, attendance, leave, anomaly, attrition-risk and task assignee feeds"
+DQ-C05,No attendance after exit,fact_attendance_monthly,Warning,FAIL,4.0,2026-10-19 12:35:25.321977+05:30,Attendance month must not be after employee exit month
+DQ-C06,Unpaid leave deducted,fact_attendance_monthly + fact_payroll,Warning,FAIL,1.0,2026-10-19 12:35:25.321977+05:30,Unpaid absence days must be reflected in payroll LOP within 0.5-day tolerance
+DQ-C07,Invoice arithmetic,fact_invoice,Warning,FAIL,1.0,2026-10-19 12:35:25.321977+05:30,Paid amount cannot exceed invoice total; balance due cannot be negative
+DQ-C08,Expense arithmetic,fact_expense,Warning,FAIL,1.0,2026-10-19 12:35:25.321977+05:30,Total must equal amount excluding GST plus GST within INR 0.01
+DQ-C09,Task dates sensible,fact_task,Warning,FAIL,20.0,2026-10-19 12:35:25.321977+05:30,Done tasks need completion dates; completion cannot precede start
+DQ-C10,Leave dates sensible,fact_leave,Warning,FAIL,2.0,2026-10-19 12:35:25.321977+05:30,Leave end date must not precede leave start date
+DQ-C11,AI feeds are fresh,fact_attrition_risk + fact_anomaly,Warning,FAIL,410.0,2026-10-19 12:35:25.321977+05:30,Stale prediction batch plus anomaly scores older than 24 hours at runtime
+DQ-C12,Dimension history does not overlap,dim_employee,Critical,FAIL,1.0,2026-10-19 12:35:25.321977+05:30,SCD2 employee validity intervals must not overlap
+DQ-C13,Pipeline freshness,dq.etl_run_log,Critical,PASS,0.0,2026-10-19 12:35:25.321977+05:30,Latest successful ETL run must finish within 24 hours
+DQ-C14,Minimum group size,metrics.* restricted views,Critical,PASS,0.0,2026-10-19 12:35:25.321977+05:30,No restricted metric view may expose a group below its dictionary threshold

@@ -1,0 +1,2 @@
+table_name,source_row_number,employee_key,employee_id,column_name,old_value,new_value,reason
+dim_employee,2,100000,EMP-0001,valid_to,2012-05-12,2012-05-02,SCD2_OVERLAP_CLIPPED_TO_DAY_BEFORE_NEXT_VALID_FROM

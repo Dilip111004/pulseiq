@@ -1,0 +1,450 @@
+check_id,table_name,row_key,detail
+DQ-C01,fact_payroll + fact_ledger,2025-05,Monthly payroll-ledger difference=61813.15
+DQ-C01,fact_payroll + fact_ledger,2025-12,Monthly payroll-ledger difference=98327.42
+DQ-C01,fact_payroll + fact_ledger,2026-02,Monthly payroll-ledger difference=154811.89
+DQ-C01,fact_payroll + fact_ledger,2026-04,Monthly payroll-ledger difference=96015.0
+DQ-C01,fact_payroll + fact_ledger,2026-06,Monthly payroll-ledger difference=-18450.0
+DQ-C03,fact_payroll,EMP-0194|PR-2026-02,duplicate employee_id/run_id group count=2
+DQ-C03,fact_payroll,EMP-0598|PR-2025-05,duplicate employee_id/run_id group count=2
+DQ-C04,fact_payroll,EMP-9001,employee_id missing from dim_employee
+DQ-C04,fact_payroll,EMP-9002,employee_id missing from dim_employee
+DQ-C05,fact_attendance_monthly,FA-X0001,attendance month after employee exit month
+DQ-C05,fact_attendance_monthly,FA-X0002,attendance month after employee exit month
+DQ-C05,fact_attendance_monthly,FA-X0003,attendance month after employee exit month
+DQ-C05,fact_attendance_monthly,FA-X0004,attendance month after employee exit month
+DQ-C06,fact_attendance_monthly + fact_payroll,EMP-0490|2025-12,unpaid_absence_days=1; lop_days=0.0
+DQ-C07,fact_invoice,INV-00385,invoice paid exceeds total or balance_due is negative
+DQ-C08,fact_expense,EXP-00371,total_amount differs from amount_excl_gst + gst_amount
+DQ-C09,fact_task,TASK-02741,invalid task completion dates/status
+DQ-C09,fact_task,TASK-02895,invalid task completion dates/status
+DQ-C09,fact_task,TASK-03925,invalid task completion dates/status
+DQ-C09,fact_task,TASK-06380,invalid task completion dates/status
+DQ-C09,fact_task,TASK-07633,invalid task completion dates/status
+DQ-C09,fact_task,TASK-09527,invalid task completion dates/status
+DQ-C09,fact_task,TASK-10799,invalid task completion dates/status
+DQ-C09,fact_task,TASK-13041,invalid task completion dates/status
+DQ-C09,fact_task,TASK-16893,invalid task completion dates/status
+DQ-C09,fact_task,TASK-17195,invalid task completion dates/status
+DQ-C09,fact_task,TASK-17389,invalid task completion dates/status
+DQ-C09,fact_task,TASK-17544,invalid task completion dates/status
+DQ-C09,fact_task,TASK-17714,invalid task completion dates/status
+DQ-C09,fact_task,TASK-19891,invalid task completion dates/status
+DQ-C09,fact_task,TASK-22599,invalid task completion dates/status
+DQ-C09,fact_task,TASK-24674,invalid task completion dates/status
+DQ-C09,fact_task,TASK-26149,invalid task completion dates/status
+DQ-C09,fact_task,TASK-27078,invalid task completion dates/status
+DQ-C09,fact_task,TASK-27674,invalid task completion dates/status
+DQ-C09,fact_task,TASK-27926,invalid task completion dates/status
+DQ-C10,fact_leave,LR-000025,end_date precedes start_date
+DQ-C10,fact_leave,LR-002286,end_date precedes start_date
+DQ-C11,fact_anomaly,AN-0001,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0002,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0003,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0004,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0005,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0006,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0007,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0008,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0009,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0010,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0011,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0012,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0013,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0014,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0015,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0016,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0017,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0018,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0019,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0020,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0021,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0022,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0023,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0024,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0025,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0026,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0027,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0028,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0029,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0030,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0031,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0032,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0033,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0034,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0035,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0036,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0037,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0038,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0039,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0040,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0041,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0042,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0043,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0044,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0045,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0046,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0047,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0048,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0049,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0050,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0051,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0052,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0053,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0054,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0055,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0056,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0057,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0058,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0059,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0060,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0061,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0062,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0063,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0064,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0065,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0066,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0067,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0068,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0069,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0070,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0071,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0072,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0073,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0074,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0075,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0076,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0077,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0078,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0079,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0080,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0081,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0082,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0083,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0084,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0085,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0086,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0087,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0088,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0089,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0090,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0091,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0092,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0093,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0094,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0095,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0096,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0097,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0098,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0099,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0100,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0101,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0102,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0103,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0104,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0105,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0106,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0107,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0108,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0109,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0110,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0111,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0112,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0113,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0114,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0115,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0116,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0117,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0118,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0119,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0120,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0121,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0122,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0123,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0124,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0125,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0126,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0127,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0128,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0129,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0130,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0131,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0132,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0133,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0134,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0135,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0136,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0137,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0138,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0139,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0140,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0141,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0142,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0143,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0144,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0145,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0146,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0147,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0148,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0149,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0150,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0151,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0152,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0153,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0154,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0155,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0156,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0157,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0158,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0159,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0160,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0161,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0162,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0163,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0164,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0165,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0166,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0167,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0168,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0169,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0170,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0171,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0172,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0173,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0174,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0175,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0176,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0177,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0178,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0179,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0180,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0181,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0182,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0183,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0184,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0185,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0186,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0187,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0188,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0189,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0190,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0191,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0192,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0193,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0194,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0195,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0196,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0197,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0198,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0199,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0200,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0201,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0202,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0203,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0204,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0205,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0206,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0207,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0208,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0209,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0210,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0211,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0212,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0213,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0214,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0215,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0216,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0217,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0218,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0219,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0220,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0221,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0222,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0223,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0224,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0225,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0226,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0227,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0228,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0229,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0230,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0231,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0232,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0233,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0234,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0235,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0236,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0237,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0238,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0239,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0240,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0241,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0242,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0243,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0244,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0245,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0246,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0247,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0248,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0249,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0250,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0251,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0252,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0253,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0254,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0255,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0256,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0257,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0258,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0259,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0260,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0261,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0262,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0263,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0264,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0265,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0266,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0267,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0268,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0269,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0270,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0271,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0272,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0273,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0274,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0275,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0276,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0277,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0278,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0279,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0280,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0281,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0282,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0283,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0284,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0285,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0286,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0287,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0288,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0289,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0290,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0291,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0292,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0293,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0294,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0295,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0296,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0297,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0298,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0299,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0300,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0301,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0302,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0303,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0304,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0305,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0306,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0307,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0308,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0309,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0310,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0311,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0312,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0313,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0314,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0315,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0316,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0317,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0318,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0319,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0320,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0321,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0322,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0323,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0324,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0325,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0326,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0327,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0328,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0329,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0330,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0331,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0332,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0333,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0334,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0335,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0336,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0337,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0338,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0339,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0340,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0341,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0342,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0343,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0344,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0345,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0346,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0347,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0348,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0349,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0350,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0351,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0352,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0353,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0354,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0355,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0356,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0357,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0358,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0359,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0360,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0361,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0362,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0363,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0364,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0365,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0366,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0367,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0368,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0369,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0370,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0371,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0372,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0373,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0374,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0375,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0376,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0377,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0378,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0379,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0380,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0381,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0382,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0383,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0384,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0385,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0386,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0387,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0388,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0389,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0390,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0391,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0392,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0393,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0394,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0395,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0396,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0397,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0398,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0399,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0400,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0401,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0402,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0403,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0404,scored_at is missing or older than 24 hours
+DQ-C11,fact_anomaly,AN-0405,scored_at is missing or older than 24 hours
+DQ-C11,fact_attrition_risk,AR-0119,prediction batch date is more than seven days stale
+DQ-C11,fact_attrition_risk,AR-0221,prediction batch date is more than seven days stale
+DQ-C11,fact_attrition_risk,AR-0238,prediction batch date is more than seven days stale
+DQ-C11,fact_attrition_risk,AR-0278,prediction batch date is more than seven days stale
+DQ-C11,fact_attrition_risk,AR-0279,prediction batch date is more than seven days stale
+DQ-C12,dim_employee,100001,employee_id=EMP-0001; validity intervals overlap

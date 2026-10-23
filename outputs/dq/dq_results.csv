@@ -1,0 +1,15 @@
+check_id,check_name,severity,status,bad_row_count,detail
+DQ-C01,Payroll equals ledger,Critical,FAIL,5,Monthly payroll employer_cost versus ledger accounts 5001–5005; tolerance INR 0.01
+DQ-C02,Ledger balanced,Critical,PASS,0,"Per journal entry, absolute debit-credit difference must be <= INR 0.005"
+DQ-C03,Unique payroll rows,Critical,FAIL,4,One payroll row per employee_id and run_id
+DQ-C04,No orphan employees,Critical,FAIL,2,employee_id must exist in dim_employee.employee_id | assignee_employee_id must exist in dim_employee.employee_id
+DQ-C05,No attendance after exit,Warning,FAIL,4,Attendance period month must not be after the employee exit month
+DQ-C06,Unpaid leave deducted,Warning,FAIL,1,Unpaid absence days must be reflected in payroll LOP days within 0.5-day tolerance
+DQ-C07,Invoice arithmetic,Warning,FAIL,1,Amount paid cannot exceed total; balance due cannot be negative
+DQ-C08,Expense arithmetic,Warning,FAIL,1,total_amount must equal amount_excl_gst + gst_amount within INR 0.01
+DQ-C09,Task dates sensible,Warning,FAIL,20,Completed date cannot precede started date; Done tasks require a completion date
+DQ-C10,Leave dates sensible,Warning,FAIL,2,Leave end date must be on or after start date
+DQ-C11,AI feeds are fresh,Warning,FAIL,410,Prediction as_of_date must be within 7 days of latest batch date | scored_at must be within 24 hours of ETL load time; static training data may be stale
+DQ-C12,Dimension history does not overlap,Critical,FAIL,1,Employee SCD2 validity intervals must not overlap
+DQ-C13,Pipeline freshness,Critical,PASS,0,Latest successful ETL finish=2026-10-19 07:05:20.033724+00:00; must be within 24 hours of check time
+DQ-C14,Minimum group size,Critical,PENDING_SQL_RUNTIME,0,Run sql/02_data_quality_checks.sql after sql/03_metric_views.sql; verify every restricted metric view suppresses groups below its dictionary threshold.

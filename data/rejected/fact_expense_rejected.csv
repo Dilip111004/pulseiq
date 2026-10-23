@@ -1,0 +1,2 @@
+source_table,source_row_number,expense_id,expense_date,expense_date_key,category_account,vendor_id,bill_reference,description,department_id,amount_excl_gst,gst_rate_percent,gst_amount,total_amount,due_date,paid_date,status,payment_mode,submitted_by,approved_by,ledger_entry_id,payment_ledger_entry_id,reject_reasons
+fact_expense,372,EXP-00371,2026-05-04,20260504,5106,V-014,BILL-2605-7936,Travel & Conveyance - May 2026,D05,164090,12,19690.8,184280.8,2026-05-19,2026-05-18,PAID,NEFT,EMP-0560,EMP-0072,JE-001836,JE-001897,EXPENSE_TOTAL_GST_MISMATCH

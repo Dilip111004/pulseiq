@@ -1,0 +1,32 @@
+PulseIQ Phase 1 Solution Package Inventory
+Updated: 2026-10-19
+User-provided deadline: 2026-10-24
+
+Verified in this runtime:
+- Source CSV exports: 29
+- Clean CSV outputs: 29
+- Rejected CSV outputs: 29 (empty files are present where no rows were rejected)
+- Latest ETL run: 62,770 input; 62,732 clean; 38 rejected
+- Row accounting: PASS (62,770 = 62,732 + 38)
+- Repeated ETL run: 58 clean/rejected CSVs were byte-identical across consecutive runs
+- Automated tests: 13 passed
+- Metric SQL view definitions: 28 of 28 present (static audit)
+- DQ SQL check IDs: 14 of 14 present (static audit)
+- PQ-03 planted issues detected by independent checks: 11 of 11
+- Schema drift fail-closed behavior tested
+- M19 uses ledger payroll accounts 5001–5005 per the official metric caveat
+
+Not runtime verified in this environment:
+- DuckDB warehouse creation and metric SQL execution (DuckDB could not be installed because network access was unavailable)
+- SQL DQ summary table and row-level SQL evidence output
+- DQ-C14 minimum-group-size runtime result
+- SQL-backed bad-row injection tests
+- Comparison of metric views against independent hand checks
+
+Known sign-off blocker:
+- June 2026 ledger salary-related expense exceeds clean payroll employer cost by INR 18,450.00. Investigate or obtain an explicit approved exception; do not silently change source data.
+
+Known contract limitation:
+- The official contract says anomaly reason_code must be from published codes, but the ZIP has no separate authoritative allow-list. Confirm it with the project owner rather than inventing one.
+
+The package excludes PQ-09 and PQ-13 answer/reference files. Raw source files are preserved unchanged. SQL/runtime-pending items are clearly labeled; do not claim all four tasks are fully verified until those items are executed and reviewed.

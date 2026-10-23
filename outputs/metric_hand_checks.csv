@@ -1,0 +1,7 @@
+metric_id,metric_name,selection,inputs,formula,independent_value,privacy_group_size,status
+M01,Headcount,"D01, 2026-09",headcount_end = 167,headcount_end,167,167,Independent calculation matches DuckDB metric view
+M04,Monthly attrition rate,"D01, 2026-09",exits = 2; headcount_start = 160,exits / headcount_start * 100,1.2500%,160,Independent calculation matches DuckDB metric view
+M07,Gross pay,"D01, 2026-09",sum(gross_pay) = 20720901.38; distinct employees = 169,SUM(gross_pay) grouped by department and month,20720901.38,169,Independent calculation matches DuckDB metric view
+M13,Attendance rate,"D01, 2026-09",present_days = 3301; half_days_unpaid = 17; scheduled_days = 3441,(present_days + 0.5 * half_days_unpaid) / scheduled_days,0.961784,169,Independent calculation matches DuckDB metric view
+M22,Task completion rate,"T01, SP-01",Done tasks = 50; non-cancelled tasks = 55,Done tasks / non-cancelled tasks,0.909091,55,Independent calculation matches DuckDB metric view
+M19,Payroll as % of revenue,"ALL, 2026-06",ledger payroll=54682683.35; payroll fact=54664233.35; revenue=81787200.00,ledger payroll accounts 5001–5005 / ledger revenue accounts 4001–4004 * 100,66.8597%,Company-wide aggregate,Independent calculation matches DuckDB metric view; INR 18450 payroll-ledger reconciliation remains open

@@ -1,0 +1,12 @@
+{
+  "run_id": "20261019T070518Z",
+  "started_at": "2026-10-19T07:05:18.003297+00:00",
+  "finished_at": "2026-10-19T07:05:20.033724+00:00",
+  "status": "SUCCESS",
+  "tables": 29,
+  "input_rows": 62770,
+  "clean_rows": 62732,
+  "rejected_rows": 38,
+  "row_accounting_pass": true,
+  "tables_with_rejects": 8
+}

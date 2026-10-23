@@ -1,0 +1,12 @@
+planted_issue_id,our_check,coverage_result,source_table
+DQ-01,DQ-C05,PASS — 4/4 affected attendance rows detected and quarantined,fact_attendance_monthly
+DQ-02,DQ-C03,PASS — duplicate groups detected; only later duplicate rows PI-X0001 and PI-X0002 quarantined; original rows retained,fact_payroll
+DQ-03,DQ-C04,PASS — both orphan payroll rows detected and quarantined,fact_payroll
+DQ-04,DQ-C01,"PASS — June 2026 mismatch detected. After bad payroll rows are quarantined, ₹18,450 remains and is documented as unresolved; do not silently adjust it.",fact_ledger
+DQ-05,DQ-C07,PASS — overpaid invoice detected; invoice and dependent payment quarantined,fact_invoice
+DQ-06,DQ-C09,PASS — 12 completed-before-started task rows detected and quarantined,fact_task
+DQ-07,DQ-C09,PASS — 8 Done tasks without completion dates detected and quarantined,fact_task
+DQ-08,DQ-C10,PASS — both reversed leave date rows detected and quarantined,fact_leave
+DQ-09,DQ-C11,PASS — all 5 stale prediction rows detected and quarantined,fact_attrition_risk
+DQ-10,DQ-C08,PASS — expense total mismatch detected and quarantined,fact_expense
+DQ-11,DQ-C12,PASS — source SCD2 overlap detected; clean layer repaired with old/new values logged,dim_employee

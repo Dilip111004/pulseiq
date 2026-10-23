@@ -1,0 +1,30 @@
+run_id,table_name,input_rows,clean_rows,rejected_rows,accounting_pass,reject_reasons
+20261019T070518Z,budget_payroll_dept_month,198,198,0,True,{}
+20261019T070518Z,data_contracts,42,42,0,True,{}
+20261019T070518Z,data_dictionary,371,371,0,True,{}
+20261019T070518Z,dim_account,47,47,0,True,{}
+20261019T070518Z,dim_client,28,28,0,True,{}
+20261019T070518Z,dim_date,2557,2557,0,True,{}
+20261019T070518Z,dim_department,11,11,0,True,{}
+20261019T070518Z,dim_employee,1606,1606,0,True,{}
+20261019T070518Z,dim_leave_type,6,6,0,True,{}
+20261019T070518Z,dim_location,9,9,0,True,{}
+20261019T070518Z,dim_role,58,58,0,True,{}
+20261019T070518Z,dim_sprint,38,38,0,True,{}
+20261019T070518Z,dim_team,16,16,0,True,{}
+20261019T070518Z,dim_vendor,30,30,0,True,{}
+20261019T070518Z,dq_checks_catalog,14,14,0,True,{}
+20261019T070518Z,fact_anomaly,405,405,0,True,{}
+20261019T070518Z,fact_attendance_monthly,7343,7339,4,True,"{""ATTENDANCE_AFTER_EXIT_MONTH"": 4}"
+20261019T070518Z,fact_attrition_risk,430,425,5,True,"{""INCONSISTENT_BATCH_AS_OF_DATE"": 5}"
+20261019T070518Z,fact_expense,501,500,1,True,"{""EXPENSE_TOTAL_GST_MISMATCH"": 1}"
+20261019T070518Z,fact_forecast,72,72,0,True,{}
+20261019T070518Z,fact_headcount_monthly,891,891,0,True,{}
+20261019T070518Z,fact_invoice,743,742,1,True,"{""INVOICE_BALANCE_INVALID"": 1}"
+20261019T070518Z,fact_invoice_payment,709,708,1,True,"{""PAYMENT_REFERENCES_REJECTED_INVOICE"": 1}"
+20261019T070518Z,fact_leave,3441,3439,2,True,"{""LEAVE_END_BEFORE_START"": 2}"
+20261019T070518Z,fact_ledger,6784,6784,0,True,{}
+20261019T070518Z,fact_payroll,7344,7340,4,True,"{""DUPLICATE_EMPLOYEE_RUN"": 2, ""EMPLOYEE_ID_KEY_MISMATCH"": 2, ""UNKNOWN_EMPLOYEE_ID"": 2, ""UNKNOWN_EMPLOYEE_KEY"": 2}"
+20261019T070518Z,fact_task,28868,28848,20,True,"{""COMPLETED_BEFORE_STARTED"": 12, ""DONE_WITHOUT_COMPLETION_DATE"": 8}"
+20261019T070518Z,kpi_targets,180,180,0,True,{}
+20261019T070518Z,metric_dictionary,28,28,0,True,{}

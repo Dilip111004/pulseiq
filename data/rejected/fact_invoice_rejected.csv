@@ -1,0 +1,2 @@
+source_table,source_row_number,invoice_id,invoice_number,client_id,invoice_date_key,invoice_date,due_date,service_line_account,subtotal,gst_rate_percent,gst_amount,total_amount,amount_paid,balance_due,status,last_payment_date,days_to_pay,days_past_due_at_cutoff,ageing_bucket_at_cutoff,carried_in_from_prior_period,ledger_entry_id,reject_reasons
+fact_invoice,386,INV-00385,INV/2025-26/0334,CL-016,20251215,2025-12-15,2026-02-13,4003,889600,18,160128,1049728,1049828,-100,PAID,2026-03-19,94.0,0,Settled / n.a.,N,JE-001194,INVOICE_BALANCE_INVALID

@@ -1,0 +1,15 @@
+﻿check_id,check_name,test_copy_mutation,observed_validation,final_test_database_bad_row_count
+DQ-C01,Payroll-ledger reconciliation,Changed October 2025 ledger account 5001 by INR 1.00 without changing payroll.,FAIL; affected month returned with difference -1.00; bad_row_count increased 5 to 6 during validation.,7
+DQ-C02,Balanced journal entries,Increased one debit line in journal entry JE-000002 by INR 1.00 without changing credit.,FAIL; JE-000002 returned with debit 83368.00 and credit 83367.00.,1
+DQ-C03,Unique payroll employee/run pairs,Appended a duplicate payroll row for employee EMP-0002 and run PR-2025-04.,FAIL; duplicate employee_id/run_id group returned; bad_row_count increased 4 to 6.,6
+DQ-C04,Payroll employee foreign key,"Appended payroll for employee EMP-MUT-C04-001, absent from dim_employee.",FAIL; orphan employee row returned; bad_row_count increased 2 to 3.,3
+DQ-C05,Attendance after exit,"Appended October 2026 attendance for employee EMP-0621, whose exit date was 2026-09-25.",FAIL; attendance row FA-MUT-C05-001 returned; bad_row_count increased 4 to 5.,5
+DQ-C06,Unpaid absence versus payroll LOP,Changed EMP-0013 April 2025 unpaid_absence_days from 0 to 1 while payroll lop_days remained 0.,FAIL; employee-month returned; bad_row_count increased 1 to 2.,2
+DQ-C07,Invoice arithmetic,Set INV-00007 amount_paid to INR 1 above total_amount.,FAIL; invoice INV-00007 returned; bad_row_count increased 1 to 2.,2
+DQ-C08,Expense arithmetic,Increased EXP-00001 total_amount by INR 1 without changing component amounts.,FAIL; expense arithmetic mismatch returned; bad_row_count increased 1 to 2.,2
+DQ-C09,Task completion dates and status,"Set TASK-00001 completed_date to 2025-04-07, before started_date 2025-04-08.",FAIL; TASK-00001 returned; bad_row_count increased 20 to 21.,21
+DQ-C10,Leave date validity,"Set LR-000001 end_date to 2025-06-19, before start_date 2025-06-20.",FAIL; LR-000001 returned; bad_row_count increased 2 to 3.,3
+DQ-C11,AI feed freshness,"Changed attrition prediction AR-0001 to an as_of_date of 2026-03-31, older than the latest batch.",FAIL; AR-0001 stale prediction detected; bad_row_count increased 410 to 411.,411
+DQ-C12,Employee history interval overlap,"Changed EMP-0002 history row employee_key 100004 valid_from to 2016-03-29, overlapping the preceding interval.",FAIL; overlapping employee history returned; bad_row_count increased 1 to 2.,2
+DQ-C13,Successful pipeline run freshness,"Inserted a fresh successful test run, confirmed PASS with count 0, then set its finished_at 48 hours in the past.","PASS on fresh run, then FAIL with bad_row_count 1 on stale run.",1
+DQ-C14,Minimum group-size privacy suppression,Temporarily replaced metrics.m01_headcount in the test database without its HAVING threshold filter.,"FAIL; 81 below-threshold groups detected, including D00 with group_size 1.",81

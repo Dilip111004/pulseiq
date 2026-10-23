@@ -1,0 +1,2 @@
+run_id,started_at,finished_at,status,tables,input_rows,clean_rows,rejected_rows,row_accounting_pass,tables_with_rejects
+20261019T070518Z,2026-10-19T07:05:18.003297+00:00,2026-10-19T07:05:20.033724+00:00,SUCCESS,29,62770,62732,38,True,8

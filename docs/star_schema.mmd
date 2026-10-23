@@ -1,0 +1,81 @@
+flowchart LR
+  subgraph Dimensions[Dimensions]
+    dim_date[(dim_date)]
+    dim_employee[(dim_employee<br/>SCD Type 2, PK employee_key)]
+    dim_department[(dim_department)]
+    dim_role[(dim_role)]
+    dim_location[(dim_location)]
+    dim_leave_type[(dim_leave_type)]
+    dim_account[(dim_account)]
+    dim_client[(dim_client)]
+    dim_vendor[(dim_vendor)]
+    dim_team[(dim_team)]
+    dim_sprint[(dim_sprint)]
+  end
+  subgraph Facts[Fact and planning tables]
+    fact_headcount[(fact_headcount_monthly)]
+    fact_payroll[(fact_payroll)]
+    fact_attendance[(fact_attendance_monthly)]
+    fact_leave[(fact_leave)]
+    fact_ledger[(fact_ledger)]
+    fact_invoice[(fact_invoice)]
+    fact_payment[(fact_invoice_payment)]
+    fact_expense[(fact_expense)]
+    fact_task[(fact_task)]
+    fact_anomaly[(fact_anomaly)]
+    fact_risk[(fact_attrition_risk)]
+    fact_forecast[(fact_forecast)]
+    budget_payroll[(budget_payroll_dept_month)]
+    kpi_targets[(kpi_targets)]
+  end
+  dim_date --> fact_headcount
+  dim_date --> fact_payroll
+  dim_date --> fact_attendance
+  dim_date --> fact_leave
+  dim_date --> fact_ledger
+  dim_date --> fact_invoice
+  dim_date --> fact_payment
+  dim_date --> fact_expense
+  dim_date --> fact_anomaly
+  dim_date --> fact_risk
+  dim_date --> fact_forecast
+  dim_department --> dim_employee
+  dim_department --> dim_role
+  dim_department --> dim_team
+  dim_department --> fact_headcount
+  dim_department --> fact_payroll
+  dim_department --> fact_attendance
+  dim_department --> fact_risk
+  dim_department --> fact_expense
+  dim_department --> budget_payroll
+  dim_department --> kpi_targets
+  dim_role --> dim_employee
+  dim_role --> fact_payroll
+  dim_location --> dim_employee
+  dim_employee --> fact_payroll
+  dim_employee --> fact_attendance
+  dim_employee --> fact_leave
+  dim_employee --> fact_risk
+  dim_leave_type --> fact_leave
+  dim_account --> fact_ledger
+  dim_account --> fact_invoice
+  dim_account --> fact_expense
+  dim_client --> fact_invoice
+  dim_vendor --> fact_expense
+  dim_team --> fact_task
+  dim_sprint --> fact_task
+  fact_invoice --> fact_payment
+  fact_task --> v_task_history[Temporal employee-history view]
+  dim_employee --> v_task_history
+  fact_anomaly --> v_anomaly_history[Temporal employee-history view]
+  dim_employee --> v_anomaly_history
+  fact_payroll --> metrics[(metrics.m01–m28 views)]
+  fact_attendance --> metrics
+  fact_headcount --> metrics
+  fact_ledger --> metrics
+  fact_invoice --> metrics
+  fact_payment --> metrics
+  fact_task --> metrics
+  fact_anomaly --> metrics
+  fact_risk --> metrics
+  fact_forecast --> metrics

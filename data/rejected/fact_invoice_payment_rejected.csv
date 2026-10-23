@@ -1,0 +1,2 @@
+source_table,source_row_number,payment_id,invoice_id,payment_date_key,payment_date,amount,payment_mode,reference_no,received_by,ledger_entry_id,reject_reasons
+fact_invoice_payment,399,PAY-00398,INV-00385,20260319,2026-03-19,1049728.0,NEFT,UTR7863584344,U-0092,JE-001616,PAYMENT_REFERENCES_REJECTED_INVOICE

@@ -1,0 +1,20 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.duckdb
+*.wal
+.DS_Store
+
+.pytest_cache/
+
+# Temporary report-generation files
+outputs/*.html
+outputs/~$*
+
+# Documentation recovery backups
+docs/*.bak
+docs/*.pre_final_edit.md
+docs/*pre_pdf_backup.md
+
+# Local working notes
+chatGPT_Todo.txt
