@@ -1,6 +1,5 @@
 # PulseIQ Phase 1 — Data Foundations & Governance (PQ-01 to PQ-04)
-
-**Deadline:** 24 October 2026 (user-provided)  
+ 
 **Dataset:** Fictional Zenith Nova Technologies training data, cutoff 30 September 2026.  
 **Scope:** PQ-01 ETL, PQ-02 star-schema warehouse, PQ-03 data quality gatekeeper, PQ-04 governed metric layer.
 
