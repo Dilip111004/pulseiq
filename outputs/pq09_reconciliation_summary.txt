@@ -1,0 +1,24 @@
+﻿PQ-09 PAYROLL RECONCILIATION
+
+Excluded payroll rows:
+1. PI-X0001 - Duplicate employee-run record.
+2. PI-X0002 - Duplicate employee-run record.
+3. PI-X0003 - Unknown employee ID and employee key mismatch.
+4. PI-X0004 - Unknown employee ID and employee key mismatch.
+
+Duplicate handling:
+The original records are retained. Only later duplicate records are excluded.
+
+Ledger reconciliation:
+Total periods checked: 18
+Periods passing: 17
+Periods failing: 1
+
+June 2026:
+Clean payroll cost: INR 54,664,233.35
+Ledger salary expense: INR 54,682,683.35
+Unresolved difference: INR 18,450.00
+
+Conclusion:
+The four invalid payroll rows are excluded from clean payroll reporting.
+The June 2026 ledger difference remains unresolved and must not be silently adjusted.
