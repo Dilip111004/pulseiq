@@ -1,0 +1,29 @@
+client_id,client_name,paid_invoices,avg_days_to_pay,payment_terms_days,avg_days_over_terms
+CL-016,Triveni Steel Industries,11,123.73,60,63.73
+CL-014,Siruvani Agro Tech,11,105.36,45,60.36
+CL-004,Kaveri Textiles Pvt Ltd,40,95.63,60,35.63
+CL-025,Gulf Mercantile LLC,8,91.5,60,31.5
+CL-011,Zephyr Hospitality Group,25,89.56,60,29.56
+CL-007,Vaigai Foods & Beverages,33,77.42,45,32.42
+CL-012,Indus Power Utilities,14,71.14,60,11.14
+CL-022,Rheinwerk Systems GmbH,16,57.13,45,12.13
+CL-008,Coromandel Auto Components,25,56.52,45,11.52
+CL-006,NorthStar Telecom Ltd,42,54.5,45,9.5
+CL-028,Pacifica Energy Corp,7,54.29,45,9.29
+CL-002,BlueRiver Logistics Ltd,77,54.0,45,9.0
+CL-027,Sakura Mobility KK,8,53.63,45,8.63
+CL-017,Greenfield Realty Ltd,12,53.08,45,8.08
+CL-026,Alpine Insure AG,8,52.75,45,7.75
+CL-020,Harbourline Bank plc,11,52.27,45,7.27
+CL-010,PeakEdge Education Pvt Ltd,23,40.65,30,10.65
+CL-019,Nordic Freight AB,9,39.22,30,9.22
+CL-001,Meridian Retail Pvt Ltd,128,38.03,30,8.03
+CL-015,Marina Media Works,18,33.44,30,3.44
+CL-005,Orchid Financial Services,30,30.53,30,0.53
+CL-003,Sunrise Healthcare Systems,39,29.33,30,-0.67
+CL-021,Tasman Retail Pty Ltd,11,29.27,30,-0.73
+CL-023,Maple Health Partners,8,29.25,30,-0.75
+CL-018,Atlas Commerce Inc,11,27.55,30,-2.45
+CL-013,Aurora Pharma Ltd,15,27.47,30,-2.53
+CL-009,Lotus Insurance Brokers,21,26.86,30,-3.14
+CL-024,Lion City Fintech Pte Ltd,14,26.64,30,-3.36
