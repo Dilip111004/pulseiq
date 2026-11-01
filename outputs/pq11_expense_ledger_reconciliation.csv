@@ -1,0 +1,13 @@
+account_code,category,clean_expense_count,clean_expense_excl_gst,ledger_net_expense,difference
+5101,Office Rent,54,38154210.0,38154210.0,0.0
+5102,Utilities,36,6832160.0,6832160.0,0.0
+5103,Internet & Telecom,36,5087240.0,5087240.0,0.0
+5104,Cloud Hosting,36,27934680.0,27934680.0,0.0
+5105,Software Subscriptions,54,15261680.0,15261680.0,0.0
+5106,Travel & Conveyance,94,11145300.0,11309390.0,-164090.0
+5107,Marketing & Advertising,42,21422910.0,21422910.0,0.0
+5108,Professional Fees,28,13017270.0,13017270.0,0.0
+5109,Recruitment Costs,36,9110710.0,9110710.0,0.0
+5110,Training & Development,36,5306170.0,5306170.0,0.0
+5111,Insurance,12,11418030.0,11418030.0,0.0
+5112,Office Supplies,36,3391480.0,3391480.0,0.0
