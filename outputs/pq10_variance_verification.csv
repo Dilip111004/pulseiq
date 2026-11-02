@@ -1,0 +1,4 @@
+department_id,month,budget,actual,verified_variance,verified_variance_pct,verification
+D01,2025-04-01,23340000,21428108.75,-1911891.25,-8.19,PASS
+D02,2025-05-01,3087000,3355773.11,268773.11,8.71,PASS
+D04,2025-06-01,9014000,9403564.87,389564.87,4.32,PASS
