@@ -1,0 +1,29 @@
+PULSEIQ — FIVE-MINUTE DEMO SCRIPT
+
+0:00–0:30 | Opening
+Introduce PulseIQ as a governed people, cost and delivery analytics solution. State that the displayed operational snapshot is September 2026 and that the invoice balance is a source snapshot.
+
+0:30–1:20 | Workforce and KPI Builder
+Open the dashboard and the Custom KPI Builder. Select a governed KPI and reporting month. Show the metric definition, formula, source, grain, owner and minimum group size. Explain that demo roles simulate access views and are not production authentication.
+
+1:20–2:10 | Cost and attendance
+Show gross pay, employer cost and attendance. Explain that attendance is calculated from summed present days, half-day adjustment and scheduled days. Do not average department percentages.
+
+2:10–3:00 | Cash and receivables
+Show the invoice ageing view. Point out that the ₹14.04 Cr balance due is a snapshot across 742 invoice records, with ₹11.23 Cr classified as not yet due. Avoid describing it as September-only movement.
+
+3:00–3:50 | Team delivery
+Open the sprint/team view and select SP-38. Show 673 completed out of 787 planned tasks (85.51%). Explain that the metric is sprint-level, not monthly.
+
+3:50–4:35 | API and lineage
+Show the API documentation at /docs, the metric catalog at /metrics, and one metric endpoint. Open docs/data_lineage.md to show source, formula, owner, grain and freshness.
+
+4:35–5:00 | Close
+Summarize the next actions: reconcile workforce populations, review receivables, investigate attendance exceptions and pair team output counts with planned workload.
+
+DEMO SAFETY NOTES
+- Start the API locally with: .\.venv\Scripts\python.exe -m uvicorn src.api:app --host 127.0.0.1 --port 8000
+- Start the Streamlit dashboard using the project's established app command.
+- Do not claim the API or dashboard is publicly hosted.
+- Do not present the demo role selector as real authentication.
+- Do not reveal individual salary details during a public demo.
