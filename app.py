@@ -14,6 +14,12 @@ pages = {
         st.Page("pages/5_Payroll_Cost.py", title="PQ-09 | Payroll Cost"),
         st.Page("pages/6_Budget_vs_Actual.py", title="PQ-10 | Budget vs Actual"),
     ],
+    "PHASE 3 - MONEY AND INSIGHT": [
+        st.Page(
+            "pages/13_PL_and_Expense_Analytics.py",
+            title="PQ-11 | P&L and Expense Analytics"
+        ),
+    ],
     "ADDITIONAL ANALYTICS": [
         st.Page("pages/9_Cross_Department_Impact.py", title="Cross-Department Impact"),
         st.Page("pages/10_AI_Signals.py", title="AI Signals"),
