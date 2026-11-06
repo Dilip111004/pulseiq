@@ -1,137 +1,128 @@
-﻿# PulseIQ Phase 2 — Workforce Analytics & Intelligence (PQ-06 to PQ-10)
+# PulseIQ — Phase 3: Money and Insight
 
-**Project:** PulseIQ — Workforce Analytics Platform.\
-**Organization:** Fictional Zenith Nova Technologies training environment.\
-**Scope:** PQ-06 Attendance and Leave, PQ-07 Attrition Analytics, PQ-08 Team Productivity, PQ-09 Payroll Cost, and PQ-10 Budget vs Actual.
+Phase 3 extends PulseIQ with financial performance analytics, receivables and cash-flow visibility, cross-department impact analysis, AI-assisted signals, and an executive scorecard.
 
-> Verification note: Phase 2 extends the PulseIQ data foundation with interactive workforce analytics dashboards. The implementation includes attendance and leave analysis, attrition analytics, team productivity, payroll cost analysis, and budget-versus-actual reporting. Supporting application code, SQL analysis, and exported outputs are maintained in the repository.
+## Phase 3 dashboards
 
-## What is included
+| Task | Dashboard | Streamlit page |
+|---|---|---|
+| PQ-11 | P&L and Expense Analytics | `pages/13_PL_and_Expense_Analytics.py` |
+| PQ-12 | Invoices, Receivables and Cash Flow | `pages/14_Invoices_Receivables_Cash_Flow.py` |
+| PQ-13 | Cross-Department Impact | `pages/9_Cross_Department_Impact.py` |
+| PQ-14 | AI Signals | `pages/10_AI_Signals.py` |
+| PQ-15 | Executive Scorecard | `pages/11_Executive_Scorecard.py` |
 
-- `app.py`: Streamlit application entry point and dashboard navigation.
-- `pages/2_Attendance_and_Leave.py`: PQ-06 attendance and leave analytics.
-- `pages/3_Attrition_Analytics.py`: PQ-07 employee attrition analysis.
-- `pages/4_Team_Productivity.py`: PQ-08 team productivity analysis.
-- `pages/5_Payroll_Cost.py`: PQ-09 payroll cost analysis.
-- `pages/6_Budget_vs_Actual.py`: PQ-10 budget-versus-actual analysis.
-- `sql/04_budget_vs_actual.sql`: budget-versus-actual SQL analysis.
-- `outputs/pq10_*.csv`: exported budget-versus-actual analysis evidence.
-- `outputs/submission/`: Phase 2 submission documents.
+The Phase 3 entry point is `app_phase3.py`. It provides navigation to the five Phase 3 dashboards and keeps the Attendance and Leave and Attrition pages hidden in this Phase 3 navigation.
 
-## Run on your computer
+## Dashboard capabilities
 
-Use Python 3.11 or newer. From the project root:
+### PQ-11 — P&L and Expense Analytics
+- Presents operating revenue, other income, total expenses, operating profit, and net profit.
+- Shows operating and net profit margins.
+- Supports monthly financial analysis and expense breakdowns.
+- Includes vendor-level expense analysis.
 
-```
-python -m venv .venv
-# Windows PowerShell:
-.venv\Scripts\Activate.ps1
-# macOS/Linux:
-# source .venv/bin/activate
+### PQ-12 — Invoices, Receivables and Cash Flow
+- Summarizes open invoices and outstanding receivables.
+- Separates not-yet-due balances from overdue balances.
+- Presents receivables ageing.
+- Summarizes recorded payments and paid-expense cash outflow.
 
-python -m pip install -r requirements.txt
-streamlit run app.py
-```
+**Interpretation note:** The cash-outflow figure represents paid expense records in the underlying data; it should not be interpreted as the company's complete cash outflow.
 
-The command starts the Streamlit application locally. Use the application navigation to access the Phase 2 dashboards.
+### PQ-13 — Cross-Department Impact
+- Compares department-level monthly workforce and cost measures.
+- Includes employer cost, overtime cost, and approved leave measures.
+- Uses department-month comparison outputs for reconciliation.
 
-### Expected outputs
+### PQ-14 — AI Signals
+- Presents detected anomaly signals and associated money-at-risk estimates.
+- Includes a forecast horizon from October 2026 through March 2027, trained on data through September 2026.
+- Forecast accuracy cannot be measured for this horizon until actual observations for the forecast months are available.
 
-- Streamlit application with five workforce analytics dashboards.
-- Attendance and leave analysis.
-- Employee attrition analysis.
-- Team productivity analysis.
-- Payroll cost analysis.
-- Budget-versus-actual analysis.
-- `outputs/pq10_*.csv`: exported budget analysis evidence.
-- `outputs/submission/`: final Phase 2 submission artifacts.
+**Interpretation note:** Signals and forecasts should be reviewed in context and are not a substitute for financial or operational approval.
 
-## Phase 2 dashboard coverage
+### PQ-15 — Executive Scorecard
+- Presents eight selected headline KPIs with target, trend, and status context.
+- Links headline measures to their detailed analytics pages.
+- Includes financial targets stored in `data/clean/financial_kpi_targets.csv`.
 
-### PQ-06 — Attendance and Leave
+**Target note:** The financial KPI thresholds in that configuration are proposed management targets, not independently verified or approved company targets. Confirm them with the relevant stakeholders before using them for formal performance evaluation.
 
-Interactive analysis of workforce attendance and leave patterns.
+## Recorded validation highlights
 
-### PQ-07 — Attrition Analytics
+The following results were recorded during Phase 3 validation:
 
-Analysis of employee attrition patterns and workforce trends.
+- **PQ-11:** Operating revenue of ₹1,259,204,600; total expenses of ₹1,036,264,914.42; net profit of ₹224,665,137.58; weighted operating margin of 17.70%.
+- **PQ-12:** 62 open invoices and open receivables of ₹139,394,278; 708 payment records; recorded paid-expense outflow of ₹185,647,035.90.
+- **PQ-13:** 198 department-month rows covering April 2025 to September 2026 across 11 departments. No duplicate department-month keys or missing department names/employer costs were reported in the validation summary.
+- **PQ-14:** 405 anomaly rows were reported; 178 records had positive money-at-risk values. Total estimated money at risk was ₹31,421,239.07. The forecast horizon has no overlapping actuals yet, so forecast accuracy is not available.
+- **PQ-15:** Eight headline KPIs were selected for the executive scorecard. Forecast accuracy and task completion were excluded because the required actual overlap or metric view was unavailable.
 
-### PQ-08 — Team Productivity
+These are recorded project validation results, not guarantees that every future refresh will produce the same values. Results depend on the source data and the pipeline run.
 
-Team-level productivity analysis and operational comparisons.
-
-### PQ-09 — Payroll Cost
-
-Payroll cost analysis and supporting workforce cost metrics.
-
-### PQ-10 — Budget vs Actual
-
-Comparison of budgeted and actual expenditure using dashboard visualizations and supporting SQL analysis.
-
-## Technology stack
+## Technology
 
 - Python
 - Streamlit
-- Pandas
 - DuckDB
+- Pandas
 - Plotly
-- SQL
+- ETL and warehouse-building scripts in `src/`
 
-## Important design decisions
+See `requirements.txt` for the project's Python dependencies.
 
-- Phase 2 is maintained on a separate Git branch so that Phase 1 work on `master` remains unchanged.
-- Each dashboard is maintained as a separate Streamlit page.
-- SQL analysis is maintained separately under the `sql/` directory.
-- Exported analytical outputs are retained under `outputs/`.
-- Workforce data represents a fictional training environment.
+## Run Phase 3 locally
 
-## Task acceptance checklist
+Run the following commands from the repository root in an activated Python environment.
 
-### PQ-06 — Attendance and Leave Analytics
+```powershell
+# Install project dependencies
+python -m pip install -r requirements.txt
 
-- Attendance dashboard implemented.
-- Leave analysis included.
-- Dashboard maintained in `pages/2_Attendance_and_Leave.py`.
+# Build clean data from the tracked raw inputs
+python src/run_etl.py
 
-### PQ-07 — Attrition Analytics
+# Build or refresh the DuckDB warehouse and metric outputs
+python src/build_warehouse.py
 
-- Attrition dashboard implemented.
-- Workforce attrition analysis included.
-- Dashboard maintained in `pages/3_Attrition_Analytics.py`.
+# Launch the Phase 3 Streamlit application
+streamlit run app_phase3.py
+```
 
-### PQ-08 — Team Productivity
+The application expects the project data folders and scripts to be available in the repository. The warehouse builder creates `outputs/pulseiq.duckdb`. The database is generated locally and is not intended to be committed as a source file; the project ignores DuckDB database files.
 
-- Team productivity dashboard implemented.
-- Team-level analysis included.
-- Dashboard maintained in `pages/4_Team_Productivity.py`.
+## Cloud deployment
 
-### PQ-09 — Payroll Cost
+For Streamlit Community Cloud, configure the application to use:
 
-- Payroll cost dashboard implemented.
-- Supporting analysis maintained in `pages/5_Payroll_Cost.py`.
+- **Repository:** `Dilip111004/pulseiq`
+- **Branch:** `phase-3-money-and-insight`
+- **Main file:** `app_phase3.py`
 
-### PQ-10 — Budget vs Actual
+The Phase 3 entry point checks whether the DuckDB warehouse is usable. If it is missing or unusable, it runs the ETL script and warehouse builder to initialize it from the repository's available data files. The full `run_all.py` workflow is not used for this startup step.
 
-- Budget-versus-actual dashboard implemented.
-- SQL analysis maintained in `sql/04_budget_vs_actual.sql`.
-- Supporting CSV outputs maintained under `outputs/`.
+No live dashboard URL is included in this README.
 
-## Submission
+## Repository and release
 
-Final Phase 2 report:
+- **Repository:** `https://github.com/Dilip111004/pulseiq`
+- **Phase 3 branch:** `phase-3-money-and-insight`
+- **Phase 3 tag:** `phase-3`
+- **Phase 3 feature commit:** `e1ad2bb` — `Complete Phase 3 - Money and Insight`
+- **Cloud database initialization fix:** `4a575a0` — `Fix Phase 3 cloud database initialization`
 
-`outputs/submission/DataAnalytics_Dilip_Phase2_Report.pdf`
+Phase 1 and Phase 2 history are preserved on their respective branches/tags.
 
-## Repository
+## Data and responsible use
 
-- GitHub repository: https://github.com/Dilip111004/pulseiq
-- Phase 2 branch: `phase-2-pq13-cross-department-impact-view`
-- Phase 2 tag: `phase-2`
+PulseIQ analytics are only as reliable as the source data, transformations, and business definitions supplied to the project. Validate source completeness, reconcile material financial differences, and confirm KPI definitions and targets before making operational decisions.
 
-## About
+Before deploying a repository publicly, verify that its tracked data and generated outputs do not expose personal, payroll, invoice, or other confidential information. Do not commit database files, credentials, secrets, or private records.
 
-**Dilip D**
+## Known limitations
 
-PulseIQ — Workforce Analytics Platform
-
----
+- Forecast accuracy for October 2026–March 2027 is not yet measurable because actuals for those months are not available in the recorded validation period.
+- The paid-expense cash-outflow measure is based on paid expense records and is not a complete company-wide cash-flow statement.
+- Financial KPI thresholds are proposed configuration values and require stakeholder approval before formal use.
+- AI anomaly signals and forecasts require human review and contextual validation.
