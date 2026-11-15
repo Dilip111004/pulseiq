@@ -87,3 +87,11 @@ Only the generated DuckDB file is removed if it is unusable. The launcher does n
 - Shared data and outputs are not duplicated into the phase folders.
 - Do not commit `.venv`, `__pycache__`, generated database files, credentials, secrets, or confidential records.
 - Review data privacy and project validation evidence before public deployment.
+
+## ?? Live Dashboard
+
+Explore the deployed **PulseIQ – AI-Powered Workforce Analytics Dashboard**:
+
+?? [Open PulseIQ Live Dashboard](https://pulseiq-gkh3mvclea6ajgyavvrkhx.streamlit.app/)
+
+The dashboard combines workforce analytics, attendance, attrition, productivity, payroll, financial insights, and executive reporting across Phases 1–3.
