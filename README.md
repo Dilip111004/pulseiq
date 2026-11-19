@@ -91,3 +91,28 @@ Only the generated DuckDB file is removed if it is unusable. The launcher does n
 - Shared data and outputs are not duplicated into the phase folders.
 - Do not commit `.venv`, `__pycache__`, generated database files, credentials, secrets, or confidential records.
 - Review data privacy and project validation evidence before public deployment.
+
+
+## Monthly Excel Report
+
+### Environment setup
+Run from the repository root:
+`powershell -ExecutionPolicy Bypass -File .\scripts\setup_environment.ps1`
+
+### Generate a report manually
+Run:
+`.\.venv\Scripts\python.exe .\src\build_monthly_report.py --month 2026-09`
+
+Replace `2026-09` with the required month in YYYY-MM format.
+
+Output: `outputs/monthly_reports/PulseIQ_Monthly_Report_YYYY-MM.xlsx`
+
+The workbook contains five sheets: Executive Finance, Workforce Movement, Payroll & Employer Cost, Attendance & Leave, and Department Scorecard.
+
+### Data availability
+The builder checks required monthly source metrics and refuses to create an incomplete report when data is missing. The latest common source month is the data coverage cut-off, not an extraction timestamp.
+
+### Automatic monthly report
+The Windows Task Scheduler task `PulseIQ Monthly Report Builder` runs `scripts/run_monthly_report.ps1` on the 5th of each month at 07:00. It generates the previous month's report using `.venv`.
+
+Logs are saved in `logs/monthly_report_YYYY-MM.log`. Ensure the project environment is installed before scheduled execution.

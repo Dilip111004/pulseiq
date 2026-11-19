@@ -116,11 +116,39 @@ def build(month_text):
 
     data = load_data()
     required = ["gross", "attendance", "revenue", "profit", "margin", "payroll_pct"]
+    latest_dates = {}
+    unavailable = []
+
+    for key in required:
+        date_col = FILES[key][1]
+        dates = data[key][date_col].dropna()
+        if dates.empty:
+            unavailable.append(key)
+        else:
+            latest_dates[key] = dates.max()
+
+    if unavailable:
+        raise ValueError(
+            "Cannot determine source coverage; no valid dates for: "
+            + ", ".join(unavailable)
+        )
+
+    common_latest_date = min(latest_dates.values())
+    data_cutoff = common_latest_date.to_period("M").to_timestamp(how="end").normalize()
+    latest_common_month = common_latest_date.to_period("M")
+
     unavailable = [k for k in required if rows_for(data, k, month).empty]
     if unavailable:
         raise ValueError(
             f"Cannot create a complete pack for {month}; missing month data: "
             + ", ".join(unavailable)
+            + f". Latest common source month: {latest_common_month}"
+        )
+
+    if month > latest_common_month:
+        raise ValueError(
+            f"Requested month {month} is beyond latest common source month "
+            f"{latest_common_month}."
         )
 
     departments = pd.read_csv(CLEAN / "dim_department.csv")
@@ -129,7 +157,30 @@ def build(month_text):
     target_month = targets[targets["month"].dt.to_period("M") == month]
 
     names = departments.set_index("department_id")["department_name"].to_dict()
-    dept_ids = sorted(d for d in names if d != "D00")
+
+    # Include departments present in this month's metric outputs,
+    # even when they are not yet listed in dim_department.csv.
+    metric_department_ids = set()
+    for metric_df in data.values():
+        if "department_id" in metric_df.columns:
+            month_rows = metric_df[
+                metric_df[FILES[next(
+                    key for key, value in data.items() if value is metric_df
+                )][1]].dt.to_period("M") == month
+            ]
+            metric_department_ids.update(
+                month_rows["department_id"].dropna().astype(str).tolist()
+            )
+
+    dept_ids = sorted(
+        (set(names) | metric_department_ids) - {"D00", "ALL"}
+    )
+    for department_id in dept_ids:
+        names.setdefault(
+            department_id,
+            f"Department {department_id} (not in dimension)"
+        )
+
     headcount = metric_map(data, "headcount", "headcount", month)
 
     wb = Workbook()
@@ -164,7 +215,11 @@ def build(month_text):
     for row in finance:
         ws.append(list(row))
     ws.append([])
-    ws.append(["Data cut-off", end.to_pydatetime(), "Requested reporting month; source month availability validated"])
+    ws.append([
+        "Latest common source month",
+        data_cutoff.to_pydatetime(),
+        "Latest month available across all required source metrics; extraction timestamp not available"
+    ])
     ws.append(["Full-pack coverage", "April 2025 onward", "Requires payroll, attendance and finance sources"])
     style(ws, f"PulseIQ | Executive Finance | {month}")
 
@@ -275,7 +330,7 @@ def build(month_text):
     wb.save(output)
     print(f"PASS: Report created: {output}")
     print(f"Reporting period: {start:%Y-%m-%d} to {end:%Y-%m-%d}")
-    print(f"Data cut-off: {end:%Y-%m-%d}")
+    print(f"Latest common source month: {data_cutoff:%Y-%m-%d}")
     print("Sheets: " + ", ".join(wb.sheetnames))
 
 def main():
