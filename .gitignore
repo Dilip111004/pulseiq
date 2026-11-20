@@ -18,3 +18,7 @@ docs/*pre_pdf_backup.md
 
 # Local working notes
 chatGPT_Todo.txt
+# Local authentication secrets
+.env
+.env.*
+!.env.example

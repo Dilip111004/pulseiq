@@ -49,15 +49,11 @@ def load_data():
                 CAST(e.expense_date AS DATE) AS expense_date,
                 CAST(e.category_account AS VARCHAR) AS account_code,
                 a.account_name AS category,
-                e.vendor_id,
-                v.vendor_name,
                 e.amount_excl_gst
             FROM warehouse.fact_expense e
             LEFT JOIN warehouse.dim_account a
               ON CAST(e.category_account AS VARCHAR)
                = CAST(a.account_code AS VARCHAR)
-            LEFT JOIN warehouse.dim_vendor v
-              ON e.vendor_id = v.vendor_id
         """).df()
 
         return pnl, expenses
@@ -292,24 +288,9 @@ if not expense_view.empty:
         )
     )
 
-    vendor_data = (
-        expense_view.groupby(
-            ["vendor_id", "vendor_name"],
-            dropna=False
-        )["amount_excl_gst"]
-        .sum()
-        .reset_index()
-        .sort_values(
-            "amount_excl_gst",
-            ascending=False
-        )
-        .head(10)
-    )
-
-    col1, col2 = st.columns(2)
+    col1 = st.container()
 
     with col1:
-
         st.markdown("**Expenses by Category**")
 
         fig_category = px.bar(
@@ -331,41 +312,9 @@ if not expense_view.empty:
             use_container_width=True
         )
 
-    with col2:
-
-        st.markdown("**Top 10 Vendors**")
-
-        fig_vendor = px.bar(
-            vendor_data,
-            x="amount_excl_gst",
-            y="vendor_name",
-            orientation="h",
-            title="Top 10 vendors (excluding GST)"
-        )
-
-        fig_vendor.update_layout(
-            yaxis={"categoryorder": "total ascending"},
-            xaxis_title="Amount excluding GST (₹)",
-            yaxis_title="Vendor"
-        )
-
-        st.plotly_chart(
-            fig_vendor,
-            use_container_width=True
-        )
-
     with st.expander("View Expense Category Details"):
         st.dataframe(
             category_data.style.format({
-                "amount_excl_gst": "₹{:,.2f}"
-            }),
-            use_container_width=True,
-            hide_index=True
-        )
-
-    with st.expander("View Top 10 Vendor Details"):
-        st.dataframe(
-            vendor_data.style.format({
                 "amount_excl_gst": "₹{:,.2f}"
             }),
             use_container_width=True,
@@ -519,20 +468,6 @@ if len(monthly) >= 2:
         f"{first['period']} and {last['period']}."
     )
 
-if not expense_view.empty:
-
-    vendor_spend = (
-        expense_view.groupby("vendor_name")["amount_excl_gst"]
-        .sum()
-    )
-
-    largest = vendor_spend.idxmax()
-    largest_amount = vendor_spend.max()
-
-    st.write(
-        f"3. Highest vendor spend in the selected period: "
-        f"{largest} (₹{largest_amount:,.2f}, excluding GST)."
-    )
 
 
 # --------------------------------------------------

@@ -1,4 +1,4 @@
-# PulseIQ — Unified Workforce, Financial and Business Analytics Platform
+# PulseIQ â€” Unified Workforce, Financial and Business Analytics Platform
 
 PulseIQ brings the Phase 1, Phase 2 and Phase 3 dashboards together in one Streamlit application while keeping phase-specific submission evidence organized in separate folders.
 
@@ -23,10 +23,10 @@ streamlit run app.py
 
 The sidebar is organized into three groups:
 
-### Phase 1 — Workforce & Headcount
+### Phase 1 â€” Workforce & Headcount
 - Workforce & Headcount Dashboard
 
-### Phase 2 — Official Tasks
+### Phase 2 â€” Official Tasks
 - PQ-06 Attendance & Leave
 - PQ-07 Attrition Analytics
 - PQ-08 Team Productivity
@@ -34,7 +34,7 @@ The sidebar is organized into three groups:
 - PQ-10 Budget vs Actual
 - Custom KPI Builder
 
-### Phase 3 — Money and Insight
+### Phase 3 â€” Money and Insight
 - PQ-11 P&L and Expense Analytics
 - PQ-12 Invoices, Receivables and Cash Flow
 - PQ-13 Cross-Department Impact
@@ -45,18 +45,18 @@ The sidebar is organized into three groups:
 
 ```text
 pulseiq/
-├── app.py
-├── app_phase1_backup.py        # retained source backup; not the launcher
-├── app_phase3.py               # retained Phase 3 launcher for reference
-├── pages/                      # shared runnable dashboard pages
-├── phase-1/                    # Phase 1 report and execution evidence
-├── phase-2/                    # Phase 2 report, board pack and demo script
-├── phase-3/                    # Phase 3 report and technical README
-├── data/                       # shared raw, clean and rejected data
-├── src/                        # ETL and warehouse pipeline
-├── sql/                        # DQ and metric SQL
-├── docs/                       # shared technical documentation
-└── outputs/                    # generated metric, DQ and analysis outputs
+â”œâ”€â”€ app.py
+â”œâ”€â”€ app_phase1_backup.py        # retained source backup; not the launcher
+â”œâ”€â”€ app_phase3.py               # retained Phase 3 launcher for reference
+â”œâ”€â”€ pages/                      # shared runnable dashboard pages
+â”œâ”€â”€ phase-1/                    # Phase 1 report and execution evidence
+â”œâ”€â”€ phase-2/                    # Phase 2 report, board pack and demo script
+â”œâ”€â”€ phase-3/                    # Phase 3 report and technical README
+â”œâ”€â”€ data/                       # shared raw, clean and rejected data
+â”œâ”€â”€ src/                        # ETL and warehouse pipeline
+â”œâ”€â”€ sql/                        # DQ and metric SQL
+â”œâ”€â”€ docs/                       # shared technical documentation
+â””â”€â”€ outputs/                    # generated metric, DQ and analysis outputs
 ```
 
 The phase folders hold phase-specific deliverables and indexes. The actual runnable dashboard pages, data, scripts and warehouse remain in their shared root-level locations so the application does not maintain duplicate copies of the same runtime assets.
@@ -85,7 +85,7 @@ Only the generated DuckDB file is removed if it is unusable. The launcher does n
 
 ## Important notes
 
-- `app.py` is the unified entry point for Phases 1–3.
+- `app.py` is the unified entry point for Phases 1â€“3.
 - `app_phase1_backup.py` is retained as a backup of the original standalone Phase 1 dashboard.
 - `app_phase3.py` is retained as the original Phase 3 entry point; use `app.py` for the unified application.
 - Shared data and outputs are not duplicated into the phase folders.
@@ -116,3 +116,30 @@ The builder checks required monthly source metrics and refuses to create an inco
 The Windows Task Scheduler task `PulseIQ Monthly Report Builder` runs `scripts/run_monthly_report.ps1` on the 5th of each month at 07:00. It generates the previous month's report using `.venv`.
 
 Logs are saved in `logs/monthly_report_YYYY-MM.log`. Ensure the project environment is installed before scheduled execution.
+
+## PulseIQ Analytics API
+
+Run locally: .\.venv_day16_test\Scripts\python.exe -m uvicorn src.api:app --host 127.0.0.1 --port 8000
+Docs: http://127.0.0.1:8000/docs
+
+### Endpoints
+- GET /health — public health check.
+- POST /auth/login — obtain a bearer token.
+- GET /metrics — list metrics (ADMIN, EXECUTIVE).
+- GET /metrics/{metric_id} — retrieve a metric (ADMIN, EXECUTIVE; M22 is ADMIN only).
+
+### Supported metrics
+M01, M07, M09, M13 and M22. EXECUTIVE users cannot access M22.
+
+### Authentication
+Bearer-token authentication. Tokens expire after 1,800 seconds (30 minutes). Configuration uses PULSEIQ_AUTH_USERS and PULSEIQ_TOKEN_SECRET. Keep secrets private.
+
+### Metric parameters
+M01, M07, M09 and M13 require month=YYYY-MM. M22 requires sprint_id.
+Responses include metric value, unit, period, definition, formula, source, owner, minimum group size, population count, source-data date and caveat.
+
+### Privacy and freshness
+Results below the configured minimum group size are suppressed (HTTP 403). Unsupported metrics return HTTP 404. Invalid minimum-group-size configuration fails closed. latest_source_date is the latest date in source data, not the ETL execution timestamp.
+
+### Deployment
+The API is configured for localhost (127.0.0.1). Do not expose it publicly until data provenance, privacy and deployment security are reviewed.

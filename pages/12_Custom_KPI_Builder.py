@@ -83,13 +83,22 @@ with st.expander("Metric definition and governance", expanded=True):
     st.write("**Owner:**", metric["owner_team"])
     st.write("**Caveat:**", metric["caveat"])
 
-try:
-    minimum_group_size = int(metric["minimum_group_size"])
-except (TypeError, ValueError):
-    minimum_group_size = 0
+import re
+
+is_task_metric = metric_id in {"M22", "M23", "M24", "M25"}
+raw_threshold = str(metric.get("minimum_group_size", "")).strip()
+match = re.search(r"\d+", raw_threshold)
+
+if is_task_metric:
+    minimum_group_size = max(5, int(match.group())) if match else 5
+elif match:
+    minimum_group_size = int(match.group())
+else:
+    minimum_group_size = None
 
 st.caption(
-    f"Minimum group size for this metric: {minimum_group_size if minimum_group_size else 'Not specified'}"
+    f"Minimum group size for this metric: "
+    f"{minimum_group_size if minimum_group_size is not None else 'Not specified'}"
 )
 
 def month_filter(df, date_col, selected_month):
@@ -99,9 +108,12 @@ def month_filter(df, date_col, selected_month):
     return df.loc[dates.dt.to_period("M") == selected_month].copy()
 
 def suppress_small_groups(df, count_col):
-    if minimum_group_size <= 0 or df.empty or count_col not in df.columns:
+    if df.empty:
         return df
-    return df.loc[df[count_col] >= minimum_group_size].copy()
+    if minimum_group_size is None or count_col not in df.columns:
+        return df.iloc[0:0].copy()
+    counts = pd.to_numeric(df[count_col], errors="coerce")
+    return df.loc[counts.notna() & (counts >= minimum_group_size)].copy()
 
 def aggregate_monthly(metric_id, grain, selected_month):
     if metric_id in {"M01", "M02", "M03", "M04"}:
@@ -222,10 +234,12 @@ if is_task_metric:
             value = done["story_points"].sum()
         else:
             value = done["cycle_time_days"].mean()
+        group_size = len(planned) if metric_id == "M22" else len(done)
+
         rows.append({
             "Team": team_name,
             "Value": value,
-            "Group size": len(planned)
+            "Group size": group_size
         })
     result = pd.DataFrame(rows)
     result = suppress_small_groups(result, "Group size")
@@ -249,6 +263,13 @@ else:
         "M14": ("fact_attendance_monthly.csv", "period_end_date"),
         "M15": ("fact_payroll.csv", "period_end_date")
     }
+
+    if metric_id not in months_source:
+        st.warning(
+            "This metric is not yet implemented in the self-service KPI explorer."
+        )
+        st.stop()
+
     source_name, date_col = months_source[metric_id]
     source = load_csv(source_name)
     date_values = pd.to_datetime(source[date_col], errors="coerce").dropna()
@@ -281,19 +302,4 @@ else:
                 st.metric(metric["metric_name"], f"{value:,.2f}")
                 st.caption("Company-level aggregate. Ratios are calculated from summed numerators and denominators, not averages of department percentages.")
 
-# Individual salary-level information is only available in the ADMIN demo.
-if role == "ADMIN":
-    with st.expander("Admin-only salary-level detail (demo)"):
-        payroll = load_csv("fact_payroll.csv")
-        if not payroll.empty:
-            months = pd.to_datetime(payroll["period_end_date"], errors="coerce").dropna().dt.to_period("M")
-            selected = st.selectbox("Salary detail month", sorted(months.unique().tolist()), key="admin_salary_month")
-            detail = month_filter(payroll, "period_end_date", selected)
-            cols = ["employee_id", "department_id", "gross_pay", "net_pay", "employer_cost"]
-            st.dataframe(detail[cols], use_container_width=True, hide_index=True)
-        else:
-            st.info("Payroll data is unavailable.")
-elif role == "HR":
-    st.info("HR salary-level detail is disabled until a verified HR-to-department mapping is configured.")
-
-st.caption("Source: data/clean metric dictionary and governed clean fact tables. Demo role selection is not an authentication boundary.")
+    st.caption("Source: data/clean metric dictionary and governed clean fact tables. Demo role selection is not an authentication boundary.")

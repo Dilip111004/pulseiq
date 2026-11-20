@@ -1,8 +1,11 @@
 ﻿from pathlib import Path
+import re
 from typing import Optional
 
 import pandas as pd
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import Depends, FastAPI, HTTPException, Query
+from pydantic import BaseModel
+from src.auth import authenticate_user, create_access_token, require_roles
 
 ROOT = Path(__file__).resolve().parents[1]
 CLEAN = ROOT / "data" / "clean"
@@ -36,6 +39,24 @@ def dictionary_row(metric_id: str) -> dict:
         raise HTTPException(status_code=404, detail="Metric definition not found.")
     row = matches.iloc[0].where(pd.notna(matches.iloc[0]), None).to_dict()
     return row
+
+
+
+def parse_minimum_group_size(definition: dict) -> int:
+    raw = definition.get("minimum_group_size")
+    match = re.search(r"\d+", str(raw)) if raw is not None else None
+    if not match:
+        raise HTTPException(
+            status_code=503,
+            detail="Metric minimum-group-size rule is missing or invalid."
+        )
+    threshold = int(match.group())
+    if threshold < 1:
+        raise HTTPException(
+            status_code=503,
+            detail="Metric minimum-group-size rule must be positive."
+        )
+    return threshold
 
 
 def latest_source_date(filename: str, date_column: str) -> Optional[str]:
@@ -103,10 +124,31 @@ def health():
     return {"status": "ok", "service": "PulseIQ Analytics API", "version": "1.0.0"}
 
 
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+
+@app.post("/auth/login", tags=["Authentication"])
+def login(request: LoginRequest):
+    user = authenticate_user(request.username, request.password)
+    token = create_access_token(user)
+    return {
+        "access_token": token,
+        "token_type": "bearer",
+        "expires_in": 1800,
+        "role": user["role"],
+    }
+
+
 @app.get("/metrics", tags=["Metrics"])
-def list_metrics():
+def list_metrics(
+    current_user: dict = Depends(require_roles("ADMIN", "EXECUTIVE"))
+):
     definitions = read_csv("metric_dictionary.csv")
     selected = definitions.loc[definitions["metric_id"].isin(METRICS)].copy()
+    if current_user["role"] == "EXECUTIVE":
+        selected = selected.loc[selected["metric_id"] != "M22"]
     return {
         "count": len(selected),
         "metrics": selected.where(pd.notna(selected), None).to_dict(orient="records"),
@@ -118,21 +160,21 @@ def get_metric(
     metric_id: str,
     month: Optional[str] = Query(default=None, description="Reporting month YYYY-MM; required except for M22."),
     sprint_id: Optional[str] = Query(default=None, description="Required for M22 task completion."),
+    current_user: dict = Depends(require_roles("ADMIN", "EXECUTIVE")),
 ):
     metric_id = metric_id.upper()
     if metric_id not in METRICS:
         raise HTTPException(status_code=404, detail="Unsupported metric. Use M01, M07, M09, M13 or M22.")
 
+    if metric_id == "M22" and current_user["role"] != "ADMIN":
+        raise HTTPException(status_code=403, detail="M22 access is restricted to ADMIN.")
+
     definition = dictionary_row(metric_id)
     value, population, freshness, period = calculate_metric(metric_id, month, sprint_id)
 
-    if population is not None and definition.get("minimum_group_size") is not None:
-        try:
-            threshold = int(float(definition["minimum_group_size"]))
-        except (TypeError, ValueError):
-            threshold = 0
-        if threshold > 0 and population < threshold:
-            raise HTTPException(status_code=403, detail="Result suppressed by the metric minimum-group-size rule.")
+    threshold = parse_minimum_group_size(definition)
+    if population is not None and population < threshold:
+        raise HTTPException(status_code=403, detail="Result suppressed by the metric minimum-group-size rule.")
 
     return {
         "metric_id": metric_id,

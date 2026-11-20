@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """PulseIQ unified Streamlit application for Phases 1–3."""
 
 from pathlib import Path
@@ -7,7 +7,7 @@ import sys
 
 import duckdb
 import streamlit as st
-
+from src.auth import authenticate_user
 st.set_page_config(
     page_title="PulseIQ Analytics Platform",
     page_icon="📊",

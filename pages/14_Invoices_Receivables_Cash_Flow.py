@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 import duckdb
 import pandas as pd
 import streamlit as st
@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "outputs" / "pulseiq.duckdb"
 
 st.title("PQ-12 | Invoices, Receivables and Cash Flow")
-st.caption("Receivables ageing, client payment behaviour and monthly cash movement")
+st.caption("Receivables ageing and monthly cash movement")
 
 if not DB_PATH.exists():
     st.error(f"DuckDB database not found: {DB_PATH}")
@@ -299,134 +299,6 @@ else:
 
 
 # --------------------------------------------------
-# CLIENT PAYMENT BEHAVIOUR
-# --------------------------------------------------
-
-st.header("3. Average Days to Pay by Client")
-
-paid_invoices = invoices[
-    (invoices["status"] == "PAID")
-    & invoices["days_to_pay"].notna()
-].copy()
-
-client_payment = (
-    paid_invoices.groupby("client_name", dropna=False)
-    .agg(
-        Paid_Invoices=("invoice_id", "count"),
-        Average_Days_To_Pay=("days_to_pay", "mean"),
-        Total_Invoice_Value=("total_amount", "sum")
-    )
-    .reset_index()
-    .sort_values("Average_Days_To_Pay", ascending=False)
-)
-
-if not client_payment.empty:
-
-    fig_payment = px.bar(
-        client_payment,
-        x="client_name",
-        y="Average_Days_To_Pay",
-        title="Average Days to Pay by Client",
-        hover_data=["Paid_Invoices", "Total_Invoice_Value"]
-    )
-
-    fig_payment.update_layout(
-        xaxis_title="Client",
-        yaxis_title="Average Days to Pay",
-        xaxis_tickangle=-45
-    )
-
-    st.plotly_chart(
-        fig_payment,
-        use_container_width=True
-    )
-
-    with st.expander("View Client Payment Details"):
-        display_payment = client_payment.copy()
-        display_payment["Average_Days_To_Pay"] = (
-            display_payment["Average_Days_To_Pay"].round(2)
-        )
-        display_payment["Total_Invoice_Value"] = (
-            display_payment["Total_Invoice_Value"].map(
-                lambda x: f"₹{x:,.2f}"
-            )
-        )
-
-        st.dataframe(
-            display_payment,
-            use_container_width=True,
-            hide_index=True
-        )
-
-else:
-    st.warning("No paid invoices with days_to_pay data were found.")
-
-
-# --------------------------------------------------
-# TOP OVERDUE CLIENTS
-# --------------------------------------------------
-
-st.header("4. Clients with Highest Overdue Receivables")
-
-client_overdue = (
-    overdue_invoices.groupby("client_name", dropna=False)
-    .agg(
-        Overdue_Invoices=("invoice_id", "count"),
-        Overdue_Amount=("balance_due", "sum"),
-        Maximum_Days_Overdue=(
-            "days_past_due_at_cutoff", "max"
-        )
-    )
-    .reset_index()
-    .sort_values("Overdue_Amount", ascending=False)
-)
-
-if not client_overdue.empty:
-
-    top_clients = client_overdue.head(10)
-
-    fig_overdue = px.bar(
-        top_clients.sort_values(
-            "Overdue_Amount", ascending=True
-        ),
-        x="Overdue_Amount",
-        y="client_name",
-        orientation="h",
-        title="Top 10 Clients by Overdue Amount",
-        hover_data=[
-            "Overdue_Invoices",
-            "Maximum_Days_Overdue"
-        ]
-    )
-
-    fig_overdue.update_layout(
-        xaxis_title="Overdue Amount (₹)",
-        yaxis_title="Client"
-    )
-
-    st.plotly_chart(
-        fig_overdue,
-        use_container_width=True
-    )
-
-    display_overdue = top_clients.copy()
-    display_overdue["Overdue_Amount"] = (
-        display_overdue["Overdue_Amount"].map(
-            lambda x: f"₹{x:,.2f}"
-        )
-    )
-
-    st.dataframe(
-        display_overdue,
-        use_container_width=True,
-        hide_index=True
-    )
-
-else:
-    st.info("No overdue client balances found.")
-
-
-# --------------------------------------------------
 # MONTHLY CASH INFLOW AND OUTFLOW
 # --------------------------------------------------
 
@@ -563,43 +435,6 @@ cc3.metric(
 
 
 # --------------------------------------------------
-# INVOICE DETAIL
-# --------------------------------------------------
-
-st.header("6. Open Invoice Details")
-
-invoice_display = open_invoices[
-    [
-        "invoice_number",
-        "client_name",
-        "invoice_date",
-        "due_date",
-        "total_amount",
-        "amount_paid",
-        "balance_due",
-        "status",
-        "days_past_due_at_cutoff",
-        "Ageing Bucket"
-    ]
-].copy()
-
-invoice_display = invoice_display.sort_values(
-    "balance_due",
-    ascending=False
-)
-
-st.dataframe(
-    invoice_display.style.format({
-        "total_amount": "₹{:,.2f}",
-        "amount_paid": "₹{:,.2f}",
-        "balance_due": "₹{:,.2f}"
-    }),
-    use_container_width=True,
-    hide_index=True
-)
-
-
-# --------------------------------------------------
 # KEY FINDINGS
 # --------------------------------------------------
 
@@ -615,26 +450,6 @@ st.write(
     f"{format_inr_crore(overdue_amount)}."
 )
 
-if not client_overdue.empty:
-    biggest_client = client_overdue.iloc[0]
-
-    st.write(
-        f"3. Highest overdue client is "
-        f"{biggest_client['client_name']} with "
-        f"₹{biggest_client['Overdue_Amount']:,.2f} outstanding."
-    )
-
-if not client_payment.empty:
-    slowest_client = client_payment.iloc[0]
-
-    st.write(
-        f"4. Highest average payment time is for "
-        f"{slowest_client['client_name']}: "
-        f"{slowest_client['Average_Days_To_Pay']:.1f} days."
-    )
-
-
-# --------------------------------------------------
 # METHODOLOGY
 # --------------------------------------------------
 

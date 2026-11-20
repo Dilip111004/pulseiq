@@ -100,12 +100,6 @@ with right:
     ai_label()
     st.info("Statistical outliers and gross-above-norm records contribute the largest amounts. Review source payroll records before taking action.")
 
-st.subheader("Anomaly detail")
-source_filter = st.selectbox("Select anomaly source", ["All sources", "Payroll", "Attendance"])
-detail = payroll if source_filter == "Payroll" else attendance if source_filter == "Attendance" else anomaly
-st.dataframe(detail[["source_dataset", "period", "employee_id", "reason_code", "reason_text", "money_at_risk", "model_version"]],
-             use_container_width=True, hide_index=True)
-
 # 2. Attrition risk
 st.divider()
 st.header("2. Attrition-Risk Signals")
@@ -126,8 +120,6 @@ elif "risk_band" in attrition_risk.columns:
         st.plotly_chart(fig, use_container_width=True)
         ai_label()
         st.info("Risk bands are model-generated support signals, not predictions that an employee will leave. Never use them alone for employment decisions.")
-    cols = [c for c in ["department_id", "risk_band", "risk_score_12m", "top_reason_1", "top_reason_2", "top_reason_3", "model_note"] if c in attrition_risk.columns]
-    st.dataframe(attrition_risk[cols], use_container_width=True, hide_index=True)
 else:
     st.warning("fact_attrition_risk.csv does not contain risk_band.")
 
