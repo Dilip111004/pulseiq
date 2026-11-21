@@ -45,18 +45,18 @@ The sidebar is organized into three groups:
 
 ```text
 pulseiq/
-â”œâ”€â”€ app.py
-â”œâ”€â”€ app_phase1_backup.py        # retained source backup; not the launcher
-â”œâ”€â”€ app_phase3.py               # retained Phase 3 launcher for reference
-â”œâ”€â”€ pages/                      # shared runnable dashboard pages
-â”œâ”€â”€ phase-1/                    # Phase 1 report and execution evidence
-â”œâ”€â”€ phase-2/                    # Phase 2 report, board pack and demo script
-â”œâ”€â”€ phase-3/                    # Phase 3 report and technical README
-â”œâ”€â”€ data/                       # shared raw, clean and rejected data
-â”œâ”€â”€ src/                        # ETL and warehouse pipeline
-â”œâ”€â”€ sql/                        # DQ and metric SQL
-â”œâ”€â”€ docs/                       # shared technical documentation
-â””â”€â”€ outputs/                    # generated metric, DQ and analysis outputs
+  app.py
+  app_phase1_backup.py
+  app_phase3.py
+  pages/
+  phase-1/
+  phase-2/
+  phase-3/
+  data/
+  src/
+  sql/
+  docs/
+  outputs/
 ```
 
 The phase folders hold phase-specific deliverables and indexes. The actual runnable dashboard pages, data, scripts and warehouse remain in their shared root-level locations so the application does not maintain duplicate copies of the same runtime assets.
