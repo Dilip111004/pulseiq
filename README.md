@@ -1,4 +1,4 @@
-# PulseIQ â€” Unified Workforce, Financial and Business Analytics Platform
+﻿# PulseIQ â€” Unified Workforce, Financial and Business Analytics Platform
 
 PulseIQ brings the Phase 1, Phase 2 and Phase 3 dashboards together in one Streamlit application while keeping phase-specific submission evidence organized in separate folders.
 
@@ -117,29 +117,69 @@ The Windows Task Scheduler task `PulseIQ Monthly Report Builder` runs `scripts/r
 
 Logs are saved in `logs/monthly_report_YYYY-MM.log`. Ensure the project environment is installed before scheduled execution.
 
-## PulseIQ Analytics API
+## PulseIQ Phase 4 — Authenticated Analytics API
 
-Run locally: .\.venv_day16_test\Scripts\python.exe -m uvicorn src.api:app --host 127.0.0.1 --port 8000
-Docs: http://127.0.0.1:8000/docs
+Phase 4 adds a FastAPI service for controlled access to workforce and business metrics.
 
-### Endpoints
-- GET /health — public health check.
-- POST /auth/login — obtain a bearer token.
-- GET /metrics — list metrics (ADMIN, EXECUTIVE).
-- GET /metrics/{metric_id} — retrieve a metric (ADMIN, EXECUTIVE; M22 is ADMIN only).
+### Features
+- FastAPI analytics API
+- Bearer-token authentication
+- Role-based access control
+- Governed metric access
+- Minimum group-size privacy suppression
+- Metric definitions and metadata
+- Interactive Swagger documentation
+- Localhost-only configuration
 
-### Supported metrics
-M01, M07, M09, M13 and M22. EXECUTIVE users cannot access M22.
+### Technology
+- Python, FastAPI, Uvicorn, Pandas, DuckDB and SQL
+
+### Project Files
+- src/api.py - API implementation
+- src/auth.py - Authentication and authorization
+- tests/test_pq19_api.py - API tests
+
+### Run the API
+
+    .\.venv_day16_test\Scripts\python.exe -m uvicorn src.api:app --host 127.0.0.1 --port 8000
+
+### API Documentation
+- Swagger UI: http://127.0.0.1:8000/docs
+- OpenAPI: http://127.0.0.1:8000/openapi.json
+
+### API Endpoints
+| Method | Endpoint | Access |
+|---|---|---|
+| GET | /health | Public |
+| POST | /auth/login | Login |
+| GET | /metrics | ADMIN, EXECUTIVE |
+| GET | /metrics/{metric_id} | ADMIN, EXECUTIVE; M22 ADMIN only |
+
+### Supported Metrics
+- M01, M07, M09, M13 and M22
+- EXECUTIVE users cannot access M22.
+- M01, M07, M09 and M13 require month=YYYY-MM.
+- M22 requires sprint_id.
+- Responses include metric value, unit, period, definition, formula, source, owner, minimum group size, population count, source-data date and caveat.
 
 ### Authentication
-Bearer-token authentication. Tokens expire after 1,800 seconds (30 minutes). Configuration uses PULSEIQ_AUTH_USERS and PULSEIQ_TOKEN_SECRET. Keep secrets private.
+- Token expiry: 1,800 seconds (30 minutes).
+- PULSEIQ_AUTH_USERS: user configuration.
+- PULSEIQ_TOKEN_SECRET: signing secret, minimum 32 characters.
+- Supported roles: ADMIN, EXECUTIVE, HR and MANAGER.
+- Never commit real credentials or secrets.
 
-### Metric parameters
-M01, M07, M09 and M13 require month=YYYY-MM. M22 requires sprint_id.
-Responses include metric value, unit, period, definition, formula, source, owner, minimum group size, population count, source-data date and caveat.
+### Privacy and Data Freshness
+- Results below the configured minimum group size are suppressed (HTTP 403).
+- Invalid minimum-group-size configuration fails closed.
+- Unsupported metrics return HTTP 404.
+- latest_source_date represents the latest date in source data.
+- The API listens on 127.0.0.1.
+- Review authentication, privacy and deployment security before public exposure.
 
-### Privacy and freshness
-Results below the configured minimum group size are suppressed (HTTP 403). Unsupported metrics return HTTP 404. Invalid minimum-group-size configuration fails closed. latest_source_date is the latest date in source data, not the ETL execution timestamp.
+### Testing
 
-### Deployment
-The API is configured for localhost (127.0.0.1). Do not expose it publicly until data provenance, privacy and deployment security are reviewed.
+    .\.venv_day16_test\Scripts\python.exe -m pytest tests/test_pq19_api.py -q
+
+### Repository
+https://github.com/Dilip111004/pulseiq
