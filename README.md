@@ -1,4 +1,4 @@
-﻿# PulseIQ â€” Unified Workforce, Financial and Business Analytics Platform
+# PulseIQ - Unified Workforce, Financial and Business Analytics Platform
 
 PulseIQ brings the Phase 1, Phase 2 and Phase 3 dashboards together in one Streamlit application while keeping phase-specific submission evidence organized in separate folders.
 
@@ -23,10 +23,10 @@ streamlit run app.py
 
 The sidebar is organized into three groups:
 
-### Phase 1 â€” Workforce & Headcount
+### Phase 1 - Workforce & Headcount
 - Workforce & Headcount Dashboard
 
-### Phase 2 â€” Official Tasks
+### Phase 2 - Official Tasks
 - PQ-06 Attendance & Leave
 - PQ-07 Attrition Analytics
 - PQ-08 Team Productivity
@@ -34,7 +34,7 @@ The sidebar is organized into three groups:
 - PQ-10 Budget vs Actual
 - Custom KPI Builder
 
-### Phase 3 â€” Money and Insight
+### Phase 3 - Money and Insight
 - PQ-11 P&L and Expense Analytics
 - PQ-12 Invoices, Receivables and Cash Flow
 - PQ-13 Cross-Department Impact
@@ -85,7 +85,7 @@ Only the generated DuckDB file is removed if it is unusable. The launcher does n
 
 ## Important notes
 
-- `app.py` is the unified entry point for Phases 1â€“3.
+- `app.py` is the unified entry point for Phases 1-3.
 - `app_phase1_backup.py` is retained as a backup of the original standalone Phase 1 dashboard.
 - `app_phase3.py` is retained as the original Phase 3 entry point; use `app.py` for the unified application.
 - Shared data and outputs are not duplicated into the phase folders.
@@ -117,7 +117,7 @@ The Windows Task Scheduler task `PulseIQ Monthly Report Builder` runs `scripts/r
 
 Logs are saved in `logs/monthly_report_YYYY-MM.log`. Ensure the project environment is installed before scheduled execution.
 
-## PulseIQ Phase 4 — Authenticated Analytics API
+## PulseIQ Phase 4 - Authenticated Analytics API
 
 Phase 4 adds a FastAPI service for controlled access to workforce and business metrics.
 
