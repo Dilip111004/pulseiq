@@ -1,10 +1,10 @@
-# PulseIQ - Unified Workforce, Financial and Business Analytics Platform
+# PulseIQ Unified Workforce, Financial and Business Analytics Platform
 
 PulseIQ brings the Phase 1, Phase 2 and Phase 3 dashboards together in one Streamlit application while keeping phase-specific submission evidence organized in separate folders.
 
 ## Live Dashboard
 
-[Open PulseIQ Live Dashboard](https://pulseiq-koolga8fvf7cqjerrwdciy.streamlit.app/)
+[Open PulseIQ Live Dashboard](https://pulseiq-0c9f.onrender.com/)
 
 ## Run the unified application
 
